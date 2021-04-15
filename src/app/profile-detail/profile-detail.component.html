@@ -1,0 +1,71 @@
+
+
+<div style="padding-top: 80px;" class="container center_div">
+  <div class="row justify-content-center">
+    <form class="form-group col-md-4 col-md-offset-5 align-center " [formGroup]="form" (ngSubmit)="onSubmit(this.data.id)">
+
+      <div class="profile-header-container">
+    		<div class="profile-header-img">
+                <img class="img-circle" [src]="this.data.avatar" />
+                <!-- badge -->
+
+            </div>
+        </div>
+  <div class="form-group input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-user"></i>
+      </span>
+    </div>
+    <input [ngModel]= "this.data.first_name" type="text" class="form-control"
+    formControlName="firstName"
+    >
+
+  <small *ngIf="!form.get('firstName').valid && form.get('firstName').touched" class="form-text text-danger w-100">Please Enter First Name</small>
+  </div>
+
+  <div class="form-group input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-user"></i>
+      </span>
+    </div>
+    <input [ngModel]= "this.data.last_name"  type="text" class="form-control"
+    formControlName="lastName"
+    placeholder="Enter Last Name">
+    <small *ngIf="!form.get('lastName').valid && form.get('lastName').touched" class="form-text text-danger w-100">Please Enter Last Name</small>
+
+  </div>
+
+
+
+  <div class="form-group input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </div>
+    <input [ngModel]= "this.data.email"  type="text" class="form-control"
+    formControlName="email"
+    placeholder="Enter Your Email">
+    <small *ngIf="!form.get('email').valid && form.get('email').touched" class="form-text text-danger w-100">Please Enter Email Properly</small>
+
+  </div>
+
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-block btn-outline-primary">Update Profile</button>
+  </div>
+
+  </form>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
