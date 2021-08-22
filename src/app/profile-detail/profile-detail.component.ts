@@ -117,7 +117,41 @@ profileDetails = new ProfileDetailModel();
 
   Adduser(){
     console.log(this.name,this.country,this.mobile,this.company);
+    var name = this.name;
+    var country =  this.country;
+    var mobile =  this.mobile;
+    var company = this.company;
+
+    var tr = document.createElement('tr');
+    var td1 = tr.appendChild(document.createElement('td'));
+    var td2 = tr.appendChild(document.createElement('td'));
+    var td3 = tr.appendChild(document.createElement('td'));
+    var td4 = tr.appendChild(document.createElement('td'));
+    var td5 = tr.appendChild(document.createElement('td'));
+   
+
+    td1.innerHTML = name;
+    td2.innerHTML = country;
+    td3.innerHTML = mobile;
+    td4.innerHTML = company;
+    td5.innerHTML = `<button class="btn btn-block btn-outline-danger">Delete</button>`;
+    
+    
+
+    document.getElementById("tbl").appendChild(tr);
+    
+
   }
+
+
+
+  deluser(e){
+    console.log(e);
+    var s = e.parentNode.parentNode;
+    s.parentNode.removeChild(s);
+
+  }
+  
 
 
 

@@ -62,15 +62,21 @@ validateUser()
 
        this.userData = res;
        for(var i=0;i<this.userData.length;i++){
-         if(this.userData[i]['email']==this.form.value.email){
-          this.router.navigate(['profileDetails']);
-         
-         }
-         
+       
+         break;
         
         
          
         
+       }
+       if(this.userData[i]['email']==this.form.value.email){
+           
+        this.router.navigate(['profileDetails']);
+        
+       
+       }
+       else {
+         alert("user is not authorized");
        }
     });
 
