@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/appService/auth.service';
 export class AuthComponent implements OnInit {
 
    form: FormGroup
+   userData:string='';
 
   constructor(private fb:FormBuilder,
     private _authService: AuthService,
@@ -23,31 +24,57 @@ export class AuthComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]]
 
     })
+
+    
   }
 
   onSubmit(){
-    if(this.form.valid){
-    console.log(this.form.value);
-    const email = this.form.value.email;
-    const password = this.form.value.password;
+    this.validateUser();
+    // if(this.form.valid){
+    // console.log(this.form.value);
+    // const email = this.form.value.email;
+    // const password = this.form.value.password;
 
-    this._authService.login(email,password).subscribe(
-      res=>{
-      console.log(res)
-     this.router.navigate(['dashboard'])
-    },
-    err =>{
-      console.log(err)
-    }
-    )
+    // this._authService.login(email,password).subscribe(
+    //   res=>{
+    //   console.log(res)
+    //  this.router.navigate(['dashboard'])
+    // },
+    // err =>{
+    //   console.log(err)
+    // }
+    // )
 
-    }
-    else{
-      alert("Please fill the form Properly");
-    }
+    // }
+    // else{
+    //   alert("Please fill the form Properly");
+    // }
+    
 
   }
 
+validateUser()
+{
+  this._authService.getlist().pipe()
+  
+  .subscribe(
+    res=>{
 
+       this.userData = res;
+       for(var i=0;i<this.userData.length;i++){
+         if(this.userData[i]['email']==this.form.value.email){
+          this.router.navigate(['profileDetails']);
+         
+         }
+         
+        
+        
+         
+        
+       }
+    });
 
+    
+    
+}
 }

@@ -1,18 +1,18 @@
 export interface IProfileDetailModel {
-  first_name?: any;
-  last_name?: any;
-  email?: any;
-  avatar?: any;
+  Name?: any;
+  Country?: any;
+  Phone?: any;
+  Companies?: any;
 
 }
 
 export class ProfileDetailModel implements IProfileDetailModel {
   constructor(
 
-    public first_name?:any,
-    public last_name?: any,
-    public email?: any,
-    public avatar?: any
+    public Name?:any,
+    public Country?: any,
+    public Phone?: any,
+    public Companies?: any
 
   ){
 

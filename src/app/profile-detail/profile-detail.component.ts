@@ -1,8 +1,11 @@
-import { Input } from '@angular/core';
+import { Input, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../appService/auth.service';
+import { tableData } from '../dashboard/dashboard.component';
 import { IProfileDetailModel, ProfileDetailModel } from './profile-detail.model';
 
 @Component({
@@ -11,9 +14,22 @@ import { IProfileDetailModel, ProfileDetailModel } from './profile-detail.model'
   styleUrls: ['./profile-detail.component.css']
 })
 export class ProfileDetailComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email','age'];
+  //dataSource = ELEMENT_DATA;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+
+
+
+  // dataSource : any[] = [];
+  dataSource: MatTableDataSource<tableData>;
   form: FormGroup
    data: any;
    formData: IProfileDetailModel;
+   name:string='';
+   country:string='';
+   mobile:string='';
+   company:string='';
 profileDetails = new ProfileDetailModel();
   constructor(
     private router: Router,
@@ -28,24 +44,26 @@ profileDetails = new ProfileDetailModel();
 
     this.route.queryParams.subscribe((params)=>{
 
-      console.log("details data----", params);
-      this.data=JSON.parse(atob(params.data));
-      console.log("my data-----", this.data);
+      // console.log("details data----", params);
+      // this.data=JSON.parse(atob(params.data));
+      // console.log("my data-----", this.data);
 
       this.form = new FormGroup({
-        firstName: new FormControl(),
-        lastName: new FormControl(),
-        email: new FormControl(),
-        avatar: new FormControl(),
+        Name: new FormControl(),
+        Country: new FormControl(),
+        Phone: new FormControl(),
+        Companies: new FormControl(),
 
 
 
      });
 
      this.form = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email : ['', [Validators.required, Validators.email]],
+      Name: ['', [Validators.required]],
+      Country: ['', [Validators.required]],
+      Phone : ['', [Validators.required]],
+      Companies : ['', [Validators.required]]
+
 
 
 
@@ -71,9 +89,9 @@ profileDetails = new ProfileDetailModel();
 
     if(this.form.valid){
       console.log(this.form.value);
-      this.profileDetails.first_name = this.form.value.first_name;
-      this.profileDetails.last_name = this.form.value.last_name;
-      this.profileDetails.email = this.form.value.email;
+      this.profileDetails.Name = this.form.value.Name;
+      this.profileDetails.Country = this.form.value.Country;
+      this.profileDetails.Companies = this.form.value.Companies;
 
 
 
@@ -97,7 +115,9 @@ profileDetails = new ProfileDetailModel();
   }
 
 
-
+  Adduser(){
+    console.log(this.name,this.country,this.mobile,this.company);
+  }
 
 
 

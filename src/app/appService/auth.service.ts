@@ -65,7 +65,8 @@ user = new BehaviorSubject<User>(null);
 
   getlist(){
 
-    return this.http.get<any>('https://reqres.in/api/users?page=2');
+    // return this.http.get<any>('https://reqres.in/api/users?page=2');
+    return this.http.get<any>('https://my-json-server.typicode.com/bokadedarvin/AngularDeveloperSample/users');
 
   }
 }

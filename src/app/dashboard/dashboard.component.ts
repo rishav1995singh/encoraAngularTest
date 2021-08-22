@@ -7,9 +7,10 @@ import { AuthService } from '../appService/auth.service';
 
 export interface tableData {
   id: any;
-  first_name: any;
-  last_name: any;
-  avatar: any;
+  firstName: any;
+  lastName: any;
+  email: any;
+  age: any;
 }
 
 
@@ -19,7 +20,7 @@ export interface tableData {
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'first_name', 'last_name', 'email', 'avatar','delete'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email','age'];
   //dataSource = ELEMENT_DATA;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -37,7 +38,8 @@ export class DashboardComponent implements OnInit {
 
     this._authService.getlist().subscribe(
       res=>{
-        var tableData = res.data;
+        console.log("get response---", res);
+        var tableData = res;
         this.dataSource = new MatTableDataSource(tableData);
         this.dataSource.paginator = this.paginator;
       //console.log(res);
